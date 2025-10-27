@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { v4 as uuid } from "uuid";
 import style from "./todolist.module.css";
@@ -9,7 +9,10 @@ import { MdAdd } from "react-icons/md";
 
 export function ToDoList() {
   const { register, handleSubmit, reset } = useForm();
-  const [taskList, setTaskList] = useState([]);
+  const [taskList, setTaskList] = useState(() => {
+    const savedTask = localStorage.getItem("taskList");
+    return savedTask ? JSON.parse(savedTask) : [];
+  });
 
   const audioCheckSound = useRef(new Audio("/sounds/check.webm"));
   const audioAddTaskSound = useRef(new Audio("/sounds/add-item.mp3"));
@@ -118,6 +121,18 @@ export function ToDoList() {
       })
     );
   };
+
+  useEffect(() => {
+    const savedTask = localStorage.getItem("taskList");
+
+    if (savedTask) {
+      setTaskList(JSON.parse(savedTask));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+  }, [taskList]);
 
   return (
     <div className={style.toDoList}>
