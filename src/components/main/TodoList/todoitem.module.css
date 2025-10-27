@@ -10,6 +10,11 @@
   align-items: center;
   gap: 1rem;
   user-select: none;
+
+  &:hover {
+    background-color: rgba(48, 204, 49, 0.25);
+    border: 0.1rem solid rgb(48, 204, 49);
+  }
 }
 
 .taskItemChecked {
@@ -28,7 +33,7 @@
   span {
     font-style: italic;
     text-decoration: line-through;
-    color: rgba(48, 204, 49);
+    color: rgb(48, 204, 49);
   }
 }
 
