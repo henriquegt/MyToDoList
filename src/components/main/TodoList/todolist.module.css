@@ -1,0 +1,111 @@
+.toDoList {
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  color: #242424;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem 2rem;
+  gap: 2rem;
+}
+
+.tittleWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  gap: 1rem;
+  user-select: none;
+}
+
+.notepadIcon {
+  font-size: 4rem;
+}
+
+.pencilIcon {
+  font-size: 3rem;
+}
+
+.formWrapper {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+form {
+  width: 80%;
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.inputAddTask {
+  width: 100%;
+  height: 3.5rem;
+  position: absolute;
+  left: 0;
+  padding: 1.5rem;
+  background-color: #eceef0;
+  outline: none;
+  border: 0;
+  border-radius: 5.8rem;
+}
+
+.inputAddTask:hover,
+.inputAddTask:focus {
+  border: 0.2rem solid #30cc31;
+}
+
+.buttonAddTask {
+  width: 4rem;
+  height: 4rem;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #30cc31;
+  padding: 0.5rem;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+
+.buttonAddTask:hover {
+  transform: translateX(0.1rem) translateY(-0.1rem);
+}
+
+.iconAddTask {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  color: #000002;
+}
+
+.taskNotFound {
+  font-size: 1.8rem;
+  color: #beb9b9;
+  font-style: italic;
+}
+
+.listTasks {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}

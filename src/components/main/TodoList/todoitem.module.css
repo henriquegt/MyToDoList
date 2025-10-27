@@ -1,0 +1,103 @@
+.taskItem {
+  width: 100%;
+  padding: 0 1rem;
+  background-color: #eceef0;
+  height: 4rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  user-select: none;
+}
+
+.taskItemChecked {
+  width: 100%;
+  padding: 0 1rem;
+  background-color: rgba(48, 204, 49, 0.25);
+  height: 4rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  user-select: none;
+
+  span {
+    font-style: italic;
+    text-decoration: line-through;
+    color: rgba(48, 204, 49);
+  }
+}
+
+.taskCheckWrapper {
+  width: 10%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    transform: scale(1.5);
+    cursor: pointer;
+  }
+}
+
+.isCompletedTask {
+  accent-color: #30cc31;
+}
+
+.taskNameWrapper {
+  height: 100%;
+  padding: 0.7rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.buttonWrapper {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 2rem;
+}
+
+.editTask {
+  color: #30cc31;
+}
+
+.clearTask {
+  color: red;
+}
+
+.editTask,
+.clearTask {
+  cursor: pointer;
+  translate: all 0.3s ease;
+}
+
+.editTask:hover,
+.clearTask:hover {
+  transform: translateX(0.1rem) translateY(-0.15rem);
+  font-size: 2.2rem;
+}
+
+.editNameTask {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  font-style: italic;
+  outline: none;
+  border: 0;
+  border-radius: 0.5rem;
+}
+
+.editNameTask:hover,
+.editNameTask:focus {
+  border: 0.2rem solid #30cc31;
+}
