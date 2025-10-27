@@ -12,6 +12,7 @@ export function ToDoList() {
   const [taskList, setTaskList] = useState([]);
 
   const audioCheckSound = new Audio("/sounds/check.webm");
+  const audioAddTaskSound = new Audio("/sounds/add-item.webm");
   const audioDeleteSound = new Audio("/sounds/delete.webm");
   const audioIncorrectSound = new Audio("/sounds/incorrect.webm");
 
@@ -49,6 +50,10 @@ export function ToDoList() {
       playIncorrectSound("Tarefa já existe na lista");
       return reset();
     }
+
+    audioAddTaskSound.volume = 0.2;
+    audioAddTaskSound.currentTime = 0;
+    audioAddTaskSound.play();
 
     setTaskList((prev) => [...prev, taskItem]);
 
