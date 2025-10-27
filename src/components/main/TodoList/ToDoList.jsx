@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { v4 as uuid } from "uuid";
 import style from "./todolist.module.css";
@@ -11,20 +11,26 @@ export function ToDoList() {
   const { register, handleSubmit, reset } = useForm();
   const [taskList, setTaskList] = useState([]);
 
-  const audioCheckSound = new Audio("/sounds/check.webm");
-  const audioAddTaskSound = new Audio("/sounds/add-item.webm");
-  const audioDeleteSound = new Audio("/sounds/delete.webm");
-  const audioIncorrectSound = new Audio("/sounds/incorrect.webm");
+  const audioCheckSound = useRef(new Audio("/sounds/check.webm"));
+  const audioAddTaskSound = useRef(new Audio("/sounds/add-item.mp3"));
+  const audioDeleteSound = useRef(new Audio("/sounds/delete.webm"));
+  const audioIncorrectSound = useRef(new Audio("/sounds/incorrect.webm"));
 
   const handleAddTask = (data) => {
     const taskName = data.taskName;
 
     const playIncorrectSound = (message) => {
-      audioIncorrectSound.volume = 0.2;
-      audioIncorrectSound.currentTime = 0;
-      audioIncorrectSound.play();
+      audioIncorrectSound.current.volume = 0.2;
+      audioIncorrectSound.current.currentTime = 0;
+      audioIncorrectSound.current.play();
 
       alert(message);
+    };
+
+    const playAddItemSound = () => {
+      audioAddTaskSound.current.volume = 0.2;
+      audioAddTaskSound.current.currentTime = 0;
+      audioAddTaskSound.current.play();
     };
 
     if (!taskName) {
@@ -40,6 +46,7 @@ export function ToDoList() {
     const taskItem = { id: uuid(), taskName: taskName, isCompletedTask: false };
 
     if (taskList.length === 0) {
+      playAddItemSound();
       setTaskList((prev) => [...prev, taskItem]);
       return reset();
     }
@@ -51,20 +58,18 @@ export function ToDoList() {
       return reset();
     }
 
-    audioAddTaskSound.volume = 0.2;
-    audioAddTaskSound.currentTime = 0;
-    audioAddTaskSound.play();
+    playAddItemSound();
 
     setTaskList((prev) => [...prev, taskItem]);
 
-    return reset();
+    reset();
   };
 
   const handleDeleteTask = (taskId) => {
     setTaskList((prev) => prev.filter((task) => task.id !== taskId));
-    audioDeleteSound.volume = 0.1;
-    audioDeleteSound.currentTime = 0;
-    audioDeleteSound.play();
+    audioDeleteSound.current.volume = 0.1;
+    audioDeleteSound.current.currentTime = 0;
+    audioDeleteSound.current.play();
   };
 
   const handleEditNameTask = (taskId, taskName) => {
@@ -101,9 +106,9 @@ export function ToDoList() {
           const newChecked = !task.isCompletedTask;
 
           if (newChecked) {
-            audioCheckSound.volume = 0.2;
-            audioCheckSound.currentTime = 0;
-            audioCheckSound.play();
+            audioCheckSound.current.volume = 0.2;
+            audioCheckSound.current.currentTime = 0;
+            audioCheckSound.current.play();
           }
 
           return { ...task, isCompletedTask: newChecked };
